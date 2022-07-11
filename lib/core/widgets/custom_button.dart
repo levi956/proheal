@@ -6,22 +6,24 @@ class CustomButton extends StatelessWidget {
   final Function() onPressed;
   final Color? buttonTextColor;
   final bool Function()? validator;
+  final double? buttonWidth;
 
   const CustomButton(
       {required this.text,
       required this.onPressed,
+      this.buttonWidth,
       this.buttonTextColor,
       this.validator,
       Key? key})
       : super(key: key);
 
-  final double borderRadius = 0;
+  final double borderRadius = 2;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 56,
-      width: double.maxFinite,
+      width: buttonWidth,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(borderRadius),
         color: (validator == null ? true : validator!())
@@ -43,12 +45,15 @@ class CustomButton extends StatelessWidget {
           ),
         ),
         onPressed: (validator == null ? true : validator!()) ? onPressed : null,
-        child: Text(
-          text,
-          style: TextStyle(
-              color: buttonTextColor,
-              fontSize: 16,
-              fontWeight: FontWeight.w600),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 8.0, right: 8),
+          child: Text(
+            text,
+            style: TextStyle(
+                color: buttonTextColor,
+                fontSize: 16,
+                fontWeight: FontWeight.w600),
+          ),
         ),
       ),
     );

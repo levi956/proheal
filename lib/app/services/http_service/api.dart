@@ -6,7 +6,7 @@ import 'package:proheal/app/services/http_service/response_model.dart';
 
 class HttpClient {
   // get health advice
-  Future<ServiceResponse<List<HealthAdviceModel>>> getHealthAdvice(
+  static Future<ServiceResponse<List<HealthAdviceModel>>> getHealthAdvice(
       String topic) async {
     try {
       var response = await Dio().get(ProHeal.topicsUrl + topic);

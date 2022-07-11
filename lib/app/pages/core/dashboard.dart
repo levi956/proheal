@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-import 'package:proheal/app/pages/core/appointments.dart';
+import 'package:proheal/app/pages/appointment/appointments.dart';
 import 'package:proheal/app/pages/core/health_advice.dart';
 import 'package:proheal/app/pages/core/homepage.dart';
 import 'package:proheal/app/pages/core/prescription.dart';

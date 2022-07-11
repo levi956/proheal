@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:proheal/app/pages/feedback/feedback.dart';
+import 'package:proheal/core/navigation/navigation.dart';
 import 'package:proheal/core/widgets/access_card.dart';
 
 import '../../../core/style/color_contants.dart';
@@ -15,18 +17,14 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: white,
       body: Padding(
-        padding: const EdgeInsets.only(
-          left: 20,
-          right: 20,
-          top: 60,
-        ),
+        padding: const EdgeInsets.only(left: 20, right: 20, top: 60),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
               'Hi Anna',
               style: TextStyle(
-                fontSize: 16,
+                fontSize: 20,
                 fontWeight: FontWeight.w500,
               ),
             ),
@@ -64,14 +62,15 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                QuickAccessCard(
-                  title: 'Locate a\npharmacy',
-                  description: 'Purchase Medicines',
+              children: [
+                const QuickAccessCard(
+                  title: 'Locate a\nhospital',
+                  description: 'Appoint a surgey',
                 ),
                 QuickAccessCard(
-                  title: 'Order a\nLab Test',
-                  description: 'Get Tests at Home',
+                  title: 'Send\nFeedback',
+                  description: 'Get feedback to\nmedical expert',
+                  onPressed: () => pushTo(context, const FeedbackPage()),
                 ),
               ],
             ),

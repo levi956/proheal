@@ -19,12 +19,11 @@ class _HealthAdviceState extends State<HealthAdvice> {
   @override
   void initState() {
     initData();
-
     super.initState();
   }
 
   void initData() {
-    data = HttpClient().getHealthAdvice('25');
+    data = HttpClient.getHealthAdvice('25');
   }
 
   @override
@@ -41,7 +40,7 @@ class _HealthAdviceState extends State<HealthAdvice> {
           const Text(
             'Health Advices',
             style: TextStyle(
-              fontSize: 16,
+              fontSize: 20,
               fontWeight: FontWeight.w500,
             ),
           ),

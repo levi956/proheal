@@ -17,7 +17,7 @@ class UserHealth extends StatelessWidget {
           Text(
             'Your Health',
             style: TextStyle(
-              fontSize: 16,
+              fontSize: 20,
               fontWeight: FontWeight.w500,
             ),
           ),
