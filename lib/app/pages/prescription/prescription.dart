@@ -5,6 +5,9 @@ import '../../../core/widgets/custom_button.dart';
 class Prescription extends StatelessWidget {
   const Prescription({Key? key}) : super(key: key);
 
+// similar to a do do list that just contains prescription data and all that
+// state is highly needed here
+
   @override
   Widget build(BuildContext context) {
     return Padding(

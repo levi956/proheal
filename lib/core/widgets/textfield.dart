@@ -6,6 +6,7 @@ class CustomTextField extends StatelessWidget {
   final Widget? iconSuffix;
   final Widget? iconLabel;
   final bool isHidden;
+  final String? Function(String? value)? validator;
 
   final TextInputType? keyboardType;
   final ValueChanged<String>? onChanged;
@@ -13,6 +14,7 @@ class CustomTextField extends StatelessWidget {
   const CustomTextField(
       {Key? key,
       this.label,
+      this.validator,
       required this.isHidden,
       this.iconLabel,
       this.keyboardType,
@@ -27,8 +29,9 @@ class CustomTextField extends StatelessWidget {
         // height: 56.31,
         width: double.maxFinite,
         margin: const EdgeInsets.only(top: 10, bottom: 10),
-        child: TextField(
-          maxLines: null,
+        child: TextFormField(
+          validator: validator,
+          // maxLines: null,
           autofocus: false,
           onChanged: onChanged,
           autocorrect: false,

@@ -52,10 +52,12 @@ class HomePage extends StatelessWidget {
                 QuickAccessCard(
                   title: 'Book an\nAppointment',
                   description: 'Find a doctor',
+                  color: Color(0xFFF5EEEC),
                 ),
                 QuickAccessCard(
                   title: 'Request a\nConsultation',
                   description: 'Talk to a specialist',
+                  color: Color(0xFFF6F8FC),
                 ),
               ],
             ),
@@ -66,10 +68,12 @@ class HomePage extends StatelessWidget {
                 const QuickAccessCard(
                   title: 'Locate a\nhospital',
                   description: 'Appoint a surgey',
+                  color: Color(0xFFF1EEF6),
                 ),
                 QuickAccessCard(
                   title: 'Send\nFeedback',
                   description: 'Get feedback to\nmedical expert',
+                  color: const Color(0xFFF7EDF7),
                   onPressed: () => pushTo(context, const FeedbackPage()),
                 ),
               ],

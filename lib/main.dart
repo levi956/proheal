@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:proheal/app/pages/core/dashboard.dart';
 import 'package:proheal/app/pages/core/homepage.dart';
-import 'package:proheal/app/pages/feedback/feedback.dart';
 import 'package:proheal/app/pages/onboard/onboard.dart';
-import 'package:proheal/core/system/set_potrait.dart';
+import 'package:proheal/core/repository/repostiory.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SetPotrait.init();
+  Repository.init();
   runApp(const ProhealApp());
 }
 

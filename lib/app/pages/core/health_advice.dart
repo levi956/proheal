@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proheal/app/services/http_service/api.dart';
+import 'package:proheal/core/repository/repostiory.dart';
 import 'package:proheal/core/style/color_contants.dart';
 import 'package:proheal/core/widgets/health_advice_card.dart';
 
@@ -18,12 +18,8 @@ class _HealthAdviceState extends State<HealthAdvice> {
 
   @override
   void initState() {
-    initData();
+    data = Repository.httpClient.getHealthAdvice('25');
     super.initState();
-  }
-
-  void initData() {
-    data = HttpClient.getHealthAdvice('25');
   }
 
   @override

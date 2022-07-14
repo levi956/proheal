@@ -4,7 +4,7 @@ import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:proheal/app/pages/appointment/appointments.dart';
 import 'package:proheal/app/pages/core/health_advice.dart';
 import 'package:proheal/app/pages/core/homepage.dart';
-import 'package:proheal/app/pages/core/prescription.dart';
+import 'package:proheal/app/pages/prescription/prescription.dart';
 import 'package:proheal/app/pages/core/user_health.dart';
 import 'package:proheal/core/style/color_contants.dart';
 import 'package:proheal/core/system/status_bar_color.dart';
@@ -17,6 +17,7 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+  // experiment of a tab provider here to manioulate the value
   int tabIndex = 0;
   final List<Widget> _screens = const [
     HomePage(),

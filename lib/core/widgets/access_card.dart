@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:proheal/core/style/color_contants.dart';
 
 class QuickAccessCard extends StatelessWidget {
   final String? title;
+  final Color? color;
   final String? description;
   final void Function()? onPressed;
   const QuickAccessCard(
-      {Key? key, this.description, this.title, this.onPressed})
+      {Key? key, this.description, this.title, this.onPressed, this.color})
       : super(key: key);
 
   @override
@@ -17,7 +17,7 @@ class QuickAccessCard extends StatelessWidget {
       child: Container(
         width: size.width * 0.42,
         height: 172,
-        color: grey,
+        color: color,
         child: Padding(
           padding: const EdgeInsets.only(left: 20, top: 20),
           child: Column(

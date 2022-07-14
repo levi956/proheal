@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:proheal/app/pages/core/dashboard.dart';
+import 'package:proheal/core/mixins/validator.dart';
+import 'package:proheal/core/navigation/navigation.dart';
 import 'package:proheal/core/system/status_bar_color.dart';
 import 'package:proheal/core/widgets/custom_button.dart';
 import 'package:proheal/core/widgets/textfield.dart';
@@ -14,7 +17,7 @@ class Onboard extends StatefulWidget {
   State<Onboard> createState() => _OnboardState();
 }
 
-class _OnboardState extends State<Onboard> {
+class _OnboardState extends State<Onboard> with Validator {
   OnboardState getStarted = OnboardState.getStarted;
 
   void toggleState() {
@@ -27,7 +30,7 @@ class _OnboardState extends State<Onboard> {
     if (getStarted == OnboardState.getStarted) {
       return 287;
     } else {
-      return 350;
+      return 360;
     }
   }
 
@@ -139,6 +142,7 @@ class _OnboardState extends State<Onboard> {
                           ),
                           CustomTextField(
                             isHidden: false,
+                            validator: validateEmail,
                             label: 'email',
                             onChanged: (v) {
                               setState(() {
@@ -160,11 +164,16 @@ class _OnboardState extends State<Onboard> {
                           // button
                           CustomButton(
                             text: 'login',
-                            onPressed: () {},
+                            onPressed: () {
+                              pushTo(context, const Dashboard());
+                            },
                             buttonWidth: double.maxFinite,
                             buttonTextColor: white,
                             validator: () {
-                              return email.isNotEmpty && password.isNotEmpty;
+                              return email.isNotEmpty &&
+                                  password.isNotEmpty &&
+                                  (RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+                                      .hasMatch(email));
                             },
                           ),
                         ],
