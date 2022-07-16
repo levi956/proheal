@@ -29,8 +29,9 @@ class HttpClient {
     } on DioError catch (_) {
       if (_.message.contains('SocketException')) {
         return ServiceResponse(
-            status: false,
-            message: "Check your internet connection and try again");
+          status: false,
+          message: "Check your internet connection and try again",
+        );
       }
 
       return ServiceResponse(

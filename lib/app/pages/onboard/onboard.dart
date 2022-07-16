@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proheal/app/pages/auth/sign_up.dart';
 import 'package:proheal/app/pages/core/dashboard.dart';
 import 'package:proheal/core/mixins/validator.dart';
 import 'package:proheal/core/navigation/navigation.dart';
@@ -8,7 +9,7 @@ import 'package:proheal/core/widgets/textfield.dart';
 
 import '../../../core/style/color_contants.dart';
 
-enum OnboardState { getStarted, hasAccount }
+enum OnboardState { getStarted, hasAccount, forgotPassword }
 
 class Onboard extends StatefulWidget {
   const Onboard({Key? key}) : super(key: key);
@@ -19,6 +20,7 @@ class Onboard extends StatefulWidget {
 
 class _OnboardState extends State<Onboard> with Validator {
   OnboardState getStarted = OnboardState.getStarted;
+  bool isVisible = true;
 
   void toggleState() {
     setState(() {
@@ -30,8 +32,14 @@ class _OnboardState extends State<Onboard> with Validator {
     if (getStarted == OnboardState.getStarted) {
       return 287;
     } else {
-      return 360;
+      return 460;
     }
+  }
+
+  tooglePassword() {
+    setState(() {
+      isVisible = !isVisible;
+    });
   }
 
   String email = '';
@@ -55,6 +63,7 @@ class _OnboardState extends State<Onboard> with Validator {
               width: double.maxFinite,
               color: white,
               child: ListView(
+                physics: const AlwaysScrollableScrollPhysics(),
                 padding: EdgeInsets.zero,
                 children: [
                   if (getStarted == OnboardState.getStarted)
@@ -87,7 +96,7 @@ class _OnboardState extends State<Onboard> with Validator {
                         // button
                         CustomButton(
                           text: 'Get Started',
-                          onPressed: () {},
+                          onPressed: () => pushTo(context, const SignUp()),
                           buttonWidth: double.maxFinite,
                         ),
                         const SizedBox(height: 15),
@@ -127,16 +136,17 @@ class _OnboardState extends State<Onboard> with Validator {
                           const Text(
                             'Login',
                             style: TextStyle(
-                              fontSize: 32,
+                              fontSize: 27,
                             ),
                           ),
+                          const SizedBox(height: 5),
                           const SizedBox(
                             width: 217,
                             child: Text(
                               'Enter your credentials to login back to your ProHeal profile.',
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 15,
                               ),
                             ),
                           ),
@@ -152,7 +162,7 @@ class _OnboardState extends State<Onboard> with Validator {
                           ),
                           const SizedBox(height: 10),
                           CustomTextField(
-                            isHidden: true,
+                            isHidden: isVisible,
                             label: 'password',
                             onChanged: (v) {
                               setState(() {
@@ -160,7 +170,29 @@ class _OnboardState extends State<Onboard> with Validator {
                               });
                             },
                           ),
-                          const SizedBox(height: 10),
+                          const SizedBox(height: 7),
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: GestureDetector(
+                              onTap: () => tooglePassword(),
+                              child: Text(
+                                'Show Password',
+                                style: TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w300,
+                                    color: black),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 13),
+                          Text(
+                            'Forgot Password?',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 16,
+                            ),
+                          ),
+                          const SizedBox(height: 20),
                           // button
                           CustomButton(
                             text: 'login',
@@ -175,6 +207,17 @@ class _OnboardState extends State<Onboard> with Validator {
                                   (RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
                                       .hasMatch(email));
                             },
+                          ),
+                          const SizedBox(height: 20),
+                          GestureDetector(
+                            onTap: () => pushTo(context, const SignUp()),
+                            child: const Text(
+                              "No account? Here creates one",
+                              style: TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w300,
+                              ),
+                            ),
                           ),
                         ],
                       ),

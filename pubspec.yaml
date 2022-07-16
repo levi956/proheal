@@ -14,6 +14,7 @@ dependencies:
   line_awesome_flutter: ^2.0.0
   dio: ^4.0.6
   webview_flutter: ^3.0.4
+  dropdown_button2: ^1.6.3
   flutter:
     sdk: flutter
 

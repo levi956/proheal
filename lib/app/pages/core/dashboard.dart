@@ -17,7 +17,7 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  // experiment of a tab provider here to manioulate the value
+  // experiment of a tab provider here to manipulate the value
   int tabIndex = 0;
   final List<Widget> _screens = const [
     HomePage(),

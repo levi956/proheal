@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proheal/app/pages/auth/sign_up.dart';
 import 'package:proheal/app/pages/core/dashboard.dart';
 import 'package:proheal/app/pages/core/homepage.dart';
 import 'package:proheal/app/pages/onboard/onboard.dart';
@@ -18,7 +19,8 @@ class ProhealApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'proheal',
-      home: Dashboard(),
+      // theme: ThemeData(),
+      home: Onboard(),
     );
   }
 }
@@ -32,7 +34,6 @@ class ProhealApp extends StatelessWidget {
 // but still keep things simple 
 // understand dependecny injection 
 // know your state and all that shit
-
 
 // feauturs -- book apointment, list prescriptions, get a list of healthcare providers
 
