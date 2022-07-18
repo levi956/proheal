@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:proheal/app/pages/auth/sign_up.dart';
 import 'package:proheal/app/pages/core/dashboard.dart';
 import 'package:proheal/app/pages/core/homepage.dart';
-import 'package:proheal/app/pages/onboard/onboard.dart';
+import 'package:proheal/app/pages/landing/landing_page.dart';
 import 'package:proheal/core/repository/repostiory.dart';
 
 void main() async {
@@ -20,7 +20,7 @@ class ProhealApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'proheal',
       // theme: ThemeData(),
-      home: Onboard(),
+      home: LandingPage(),
     );
   }
 }
@@ -35,6 +35,6 @@ class ProhealApp extends StatelessWidget {
 // understand dependecny injection 
 // know your state and all that shit
 
-// feauturs -- book apointment, list prescriptions, get a list of healthcare providers
+// features -- book apointment, list prescriptions, get a list of healthcare providers
 
 // DEFENSE IS JULY 26TH

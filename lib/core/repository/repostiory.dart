@@ -14,5 +14,9 @@ class Repository {
     // setup services like firebase and the rest here
     // seems to work now
     SetPotrait.init();
+
+    // logic also to check the app state sha
+    // assign a uuid value to the key firstLanuch
+    // check condition and satisfy with bool condition
   }
 }

@@ -9,27 +9,27 @@ import 'package:proheal/core/widgets/textfield.dart';
 
 import '../../../core/style/color_contants.dart';
 
-enum OnboardState { getStarted, hasAccount, forgotPassword }
+enum LandingPageState { getStarted, hasAccount, forgotPassword }
 
-class Onboard extends StatefulWidget {
-  const Onboard({Key? key}) : super(key: key);
+class LandingPage extends StatefulWidget {
+  const LandingPage({Key? key}) : super(key: key);
 
   @override
-  State<Onboard> createState() => _OnboardState();
+  State<LandingPage> createState() => _LandingPageState();
 }
 
-class _OnboardState extends State<Onboard> with Validator {
-  OnboardState getStarted = OnboardState.getStarted;
+class _LandingPageState extends State<LandingPage> with Validator {
+  LandingPageState getStarted = LandingPageState.getStarted;
   bool isVisible = true;
 
   void toggleState() {
     setState(() {
-      getStarted = OnboardState.hasAccount;
+      getStarted = LandingPageState.hasAccount;
     });
   }
 
   double toggleHeight() {
-    if (getStarted == OnboardState.getStarted) {
+    if (getStarted == LandingPageState.getStarted) {
       return 287;
     } else {
       return 460;
@@ -66,7 +66,7 @@ class _OnboardState extends State<Onboard> with Validator {
                 physics: const AlwaysScrollableScrollPhysics(),
                 padding: EdgeInsets.zero,
                 children: [
-                  if (getStarted == OnboardState.getStarted)
+                  if (getStarted == LandingPageState.getStarted)
                     Column(
                       children: [
                         const SizedBox(height: 30),
@@ -126,7 +126,7 @@ class _OnboardState extends State<Onboard> with Validator {
                         ),
                       ],
                     ),
-                  if (getStarted == OnboardState.hasAccount)
+                  if (getStarted == LandingPageState.hasAccount)
                     Padding(
                       padding: const EdgeInsets.all(15.0),
                       child: Column(
@@ -185,7 +185,7 @@ class _OnboardState extends State<Onboard> with Validator {
                             ),
                           ),
                           const SizedBox(height: 13),
-                          Text(
+                          const Text(
                             'Forgot Password?',
                             textAlign: TextAlign.center,
                             style: TextStyle(
