@@ -1,25 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:proheal/app/pages/auth/sign_up.dart';
-import 'package:proheal/app/pages/core/dashboard.dart';
-import 'package:proheal/app/pages/core/homepage.dart';
 import 'package:proheal/app/pages/landing/landing_page.dart';
 import 'package:proheal/core/repository/repostiory.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Repository.init();
-  runApp(const ProhealApp());
+  await Repository.init();
+  runApp(const ProHealApp());
 }
 
-class ProhealApp extends StatelessWidget {
-  const ProhealApp({Key? key}) : super(key: key);
+class ProHealApp extends StatelessWidget {
+  const ProHealApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'proheal',
-      // theme: ThemeData(),
       home: LandingPage(),
     );
   }

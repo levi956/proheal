@@ -8,15 +8,15 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../../core/navigation/navigation.dart';
 
-class HealthAdvicesWebView extends StatefulWidget {
+class WebViewPage extends StatefulWidget {
   final String? data;
-  const HealthAdvicesWebView({Key? key, this.data}) : super(key: key);
+  const WebViewPage({Key? key, this.data}) : super(key: key);
 
   @override
-  State<HealthAdvicesWebView> createState() => _HealthAdvicesWebViewState();
+  State<WebViewPage> createState() => _WebViewPageState();
 }
 
-class _HealthAdvicesWebViewState extends State<HealthAdvicesWebView> {
+class _WebViewPageState extends State<WebViewPage> {
   bool isLoading = true;
 
   @override

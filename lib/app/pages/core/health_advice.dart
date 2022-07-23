@@ -48,24 +48,21 @@ class _HealthAdviceState extends State<HealthAdvice> {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 ServiceResponse<List<HealthAdviceModel>> data = snapshot.data!;
-                if (data.status != false) {
+                if (data.status) {
                   List<HealthAdviceModel>? healthData = data.data;
                   return Expanded(
-                    child: Scrollbar(
-                      thickness: 2.0,
-                      child: ListView.separated(
-                        padding: EdgeInsets.zero,
-                        physics: const AlwaysScrollableScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          return HealthAdviceCard(
-                            data: healthData![index],
-                          );
-                        },
-                        separatorBuilder: (context, index) => const SizedBox(
-                          height: 20,
-                        ),
-                        itemCount: healthData!.length,
+                    child: ListView.separated(
+                      padding: EdgeInsets.zero,
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        return HealthAdviceCard(
+                          data: healthData![index],
+                        );
+                      },
+                      separatorBuilder: (context, index) => const SizedBox(
+                        height: 20,
                       ),
+                      itemCount: healthData!.length,
                     ),
                   );
                 } else {

@@ -2,8 +2,8 @@ class HealthAdviceModel {
   String? title;
   String? url;
 
-  String get titleH => title ?? '';
-  String get urlH => url ?? '';
+  String get adviceTitle => title ?? '';
+  String get adviceUrl => url ?? '';
 
   HealthAdviceModel({this.title, this.url});
 

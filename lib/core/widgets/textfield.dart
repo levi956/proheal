@@ -72,7 +72,7 @@ class CustomTextField2 extends StatelessWidget {
   final TextInputType? keyboardType;
 
   final ValueChanged<String>? onChanged;
-  final bool? isHidden;
+  final bool isHidden;
   final String? hintText;
 
   const CustomTextField2(
@@ -80,7 +80,7 @@ class CustomTextField2 extends StatelessWidget {
       required this.label,
       this.hintText,
       this.keyboardType,
-      this.isHidden,
+      required this.isHidden,
       this.onChanged})
       : super(key: key);
 
@@ -107,7 +107,7 @@ class CustomTextField2 extends StatelessWidget {
           ),
           child: TextField(
             autocorrect: false,
-            obscureText: isHidden!,
+            obscureText: isHidden,
             cursorColor: black,
             keyboardType: keyboardType,
             onChanged: onChanged,

@@ -13,7 +13,7 @@ class HealthAdviceCard extends StatelessWidget {
   Widget build(BuildContext context) {
     // var size = MediaQuery.of(context).size;
     return InkWell(
-      onTap: () => pushTo(context, HealthAdvicesWebView(data: data!.urlH)),
+      onTap: () => pushTo(context, WebViewPage(data: data!.adviceUrl)),
       child: Container(
         width: double.maxFinite,
         color: grey,
@@ -24,7 +24,7 @@ class HealthAdviceCard extends StatelessWidget {
             children: [
               const Icon(LineAwesomeIcons.newspaper),
               Text(
-                data!.titleH,
+                data!.adviceTitle,
                 style: const TextStyle(
                   height: 1.5,
                   fontSize: 14,

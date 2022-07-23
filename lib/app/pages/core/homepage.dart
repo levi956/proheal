@@ -1,31 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:proheal/app/models/health_news.dart';
 import 'package:proheal/app/pages/feedback/feedback.dart';
 import 'package:proheal/core/navigation/navigation.dart';
+import 'package:proheal/core/repository/repostiory.dart';
 import 'package:proheal/core/widgets/access_card.dart';
 
 import '../../../core/style/color_contants.dart';
+import '../../../core/widgets/health_news_card.dart';
+import '../../services/http_service/response_model.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  late Future<ServiceResponse<List<HealthNews>>> data;
+
+  @override
+  void initState() {
+    data = Repository.httpClient.getHealthNews();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    String ktext1 = 'Lorem ipsum dolor sit amet';
-    String ktext2 =
-        '‘Content here, content here’, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for ‘lorem ipsum';
+
     return Scaffold(
       backgroundColor: white,
       body: Padding(
-        padding: const EdgeInsets.only(left: 20, right: 20, top: 40),
+        padding:
+            const EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
         child: ListView(
-          padding: const EdgeInsets.only(bottom: 10),
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  'Hi Anna',
+                  'Hey Levi,',
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w500,
@@ -58,8 +73,8 @@ class HomePage extends StatelessWidget {
                       color: Color(0xFFF5EEEC),
                     ),
                     QuickAccessCard(
-                      title: 'Request a\nConsultation',
-                      description: 'Talk to a specialist',
+                      title: 'Access your\nRecovery',
+                      description: 'Answer questions\nin a tracking session',
                       color: Color(0xFFF6F8FC),
                     ),
                   ],
@@ -83,37 +98,72 @@ class HomePage extends StatelessWidget {
                 ),
                 const SizedBox(height: 30),
                 //
-                Container(
-                  height: 122,
-                  width: size.width * 0.82,
-                  color: black,
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.only(left: 20.0, top: 20, right: 15),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          ktext1,
-                          style: TextStyle(
-                            color: white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        const SizedBox(height: 5),
-                        Text(
-                          ktext2,
-                          style: const TextStyle(
-                            color: Color(0xFF999A9D),
-                            fontSize: 10,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    ),
+
+                const Text(
+                  'Latest Health News',
+                  style: TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.w500,
                   ),
-                )
+                ),
+                const SizedBox(height: 10),
+
+                FutureBuilder<ServiceResponse<List<HealthNews>>>(
+                  future: data,
+                  builder: (_, snapshot) {
+                    if (snapshot.hasData) {
+                      ServiceResponse<List<HealthNews>> data = snapshot.data!;
+                      if (data.status) {
+                        List<HealthNews> articles = data.data!;
+                        return SizedBox(
+                          height: 130,
+                          child: ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            padding: EdgeInsets.zero,
+                            physics: const AlwaysScrollableScrollPhysics(),
+                            itemBuilder: (context, index) {
+                              return HealthNewsCard(
+                                size: size,
+                                data: articles[index],
+                              );
+                            },
+                            separatorBuilder: (context, index) =>
+                                const SizedBox(
+                              width: 10,
+                            ),
+                            itemCount: articles.length,
+                          ),
+                        );
+                      } else {
+                        return Container(
+                          width: double.maxFinite,
+                          color: Theme.of(context).scaffoldBackgroundColor,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Icon(
+                                Icons.warning,
+                                color: Colors.red,
+                                size: 25.0,
+                              ),
+                              const SizedBox(height: 15),
+                              Text(
+                                data.message!,
+                                style: TextStyle(
+                                  color: black,
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      }
+                    } else {
+                      return const Center(
+                        child: CircularProgressIndicator.adaptive(),
+                      );
+                    }
+                  },
+                ),
               ],
             ),
           ],

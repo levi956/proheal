@@ -1,9 +1,17 @@
-class Feedbackmodel {
-  String? complain;
+class FeedbackModel {
+  String? patientFeedback;
   String? imageUrl;
-  DateTime? feedbackSubmit;
+  DateTime? submissionTime;
 
-  Feedbackmodel({this.complain, this.feedbackSubmit, this.imageUrl});
+  FeedbackModel({this.patientFeedback, this.submissionTime, this.imageUrl});
 
   // probably a toJson to get the data to the database (server) with the time of it included
+
+  Map<String, dynamic> toMap() {
+    return {
+      'patientFeedback': patientFeedback,
+      'imageUrl': imageUrl,
+      'submissionTime': submissionTime,
+    };
+  }
 }

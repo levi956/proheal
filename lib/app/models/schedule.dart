@@ -1,7 +1,6 @@
 class ScheduleModel {
   String? patientName;
   String? surgeryType;
-  //User patientCred
   String? additonalNotes;
   DateTime? scheduleDate;
   bool? isAvailabe;

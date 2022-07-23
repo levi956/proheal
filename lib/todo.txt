@@ -1,0 +1,21 @@
+--- This file is for ideas on the development and all ---
+
+when the project is first opened, check here for any ideas you have 
+and be updating
+
+
+
+
+---TRACKING RECOVERY SESSION---
+Patients access their recovery by anwering questions
+
+a patient is can answer questions from the dropdown in the create account
+
+
+-- if undergone surgery, provide a list of surgeries in the app scope
+(c-section, plastic surgery, heartbypass, broken bone repair, heart surgery)
+
+-- get questions to access depending on the surgeries
+
+
+-- then decision tree blah blah blah 

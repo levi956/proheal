@@ -29,6 +29,13 @@ class _SignUpState extends State<SignUp> {
 // proably make this a provider later on
   List<String> genderOptions = ['Select your gender', 'Male', 'Female'];
   List<String> stateOptions = ['Select your state', 'Lagos', 'Abuja'];
+  List<String> bloodGroupOptions = [
+    'Select your blood group',
+    '-A',
+    'B',
+    'AB',
+    'O',
+  ];
   List<String> hasConceivedOptions = ['Had a baby?', 'Yes', 'No'];
   List<String> userOptions = [
     'Choose one',
@@ -44,9 +51,11 @@ class _SignUpState extends State<SignUp> {
   String password = '';
   String height = '';
   String weight = '';
+  String phoneNumber = '';
   String gender = 'Select your gender';
   String hasConcieved = 'Had a baby?';
   String userSelectedOption = 'Choose one';
+  String bloodGroup = 'Select your blood group';
 
   tooglePassword() {
     setState(() {
@@ -56,9 +65,9 @@ class _SignUpState extends State<SignUp> {
 
   toogleStepInt() {
     if (signUpStage == SignUpStage.one) {
-      return 'STEP 1 OF 3';
+      return 'STEP 1 OF 2';
     } else {
-      return 'STEP 2 OF 3';
+      return 'STEP 2 OF 2';
     }
   }
 
@@ -77,6 +86,33 @@ class _SignUpState extends State<SignUp> {
       setState(() {
         signUpStage = SignUpStage.one;
       });
+    }
+  }
+
+  mainButtonOnpressed() {
+    if (signUpStage == SignUpStage.one) {
+      setState(() {
+        signUpStage = SignUpStage.two;
+      });
+    } else {
+      // method that registers users goes here
+    }
+  }
+
+  bool buttonValidator() {
+    if (signUpStage == SignUpStage.one) {
+      return firstName.isNotEmpty &&
+          lastName.isNotEmpty &&
+          email.isNotEmpty &&
+          password.isNotEmpty &&
+          phoneNumber.isNotEmpty &&
+          password.length > 7;
+    } else {
+      return gender != 'Select your gender' &&
+          height != '' &&
+          weight != '' &&
+          bloodGroup != 'Select your blood group' &&
+          userSelectedOption != 'Choose one';
     }
   }
 
@@ -232,7 +268,7 @@ class _SignUpState extends State<SignUp> {
                       isHidden: false,
                       onChanged: (v) {
                         setState(() {
-                          password = v.trim();
+                          phoneNumber = v.trim();
                         });
                       },
                     ),
@@ -305,6 +341,20 @@ class _SignUpState extends State<SignUp> {
                     ),
                     const SizedBox(height: 20),
                     CustomDropDown(
+                      label: 'Blood group',
+                      items: bloodGroupOptions
+                          .map(
+                              (e) => DropdownMenuItem(value: e, child: Text(e)))
+                          .toList(),
+                      onChanged: (v) {
+                        setState(() {
+                          bloodGroup = v!;
+                        });
+                      },
+                      value: bloodGroup,
+                    ),
+                    const SizedBox(height: 20),
+                    CustomDropDown(
                       label: 'Please select an option',
                       items: userOptions
                           .map(
@@ -324,6 +374,8 @@ class _SignUpState extends State<SignUp> {
               CustomButton(
                 text: toogleButtonText(),
                 buttonWidth: double.maxFinite,
+                // validator: buttonValidator,
+                buttonTextColor: white,
                 onPressed: () {
                   if (signUpStage == SignUpStage.one) {
                     setState(() {
@@ -353,4 +405,6 @@ class _SignUpState extends State<SignUp> {
       ),
     );
   }
+
+  // probaly throw the method that registers the user here
 }

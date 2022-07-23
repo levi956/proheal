@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1049355472665",
+    "project_id": "proheal",
+    "storage_bucket": "proheal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1049355472665:android:dd1f165389aeff3f257f88",
+        "android_client_info": {
+          "package_name": "com.example.proheal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1049355472665-a9u3qedhe7rtqag4khttlltr12p33i3f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAo0sff5FPE4cs1R4vucCSyY5py9L030Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1049355472665-a9u3qedhe7rtqag4khttlltr12p33i3f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

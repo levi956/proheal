@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:proheal/app/pages/prescription/add_prescription.dart';
+import 'package:proheal/core/navigation/navigation.dart';
 
 import '../../../core/widgets/custom_button.dart';
 
@@ -39,7 +41,7 @@ class Prescription extends StatelessWidget {
           CustomButton(
             text: 'Manually add prescriptions',
             buttonWidth: double.maxFinite,
-            onPressed: () {},
+            onPressed: () => pushTo(context, const AddPrescription()),
           )
         ],
       ),
