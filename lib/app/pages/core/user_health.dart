@@ -13,7 +13,7 @@ class UserHealth extends StatelessWidget {
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+        children: const [
           Text(
             'Your Health',
             style: TextStyle(

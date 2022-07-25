@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:proheal/app/pages/core/dashboard.dart';
 import 'package:proheal/app/pages/landing/landing_page.dart';
 import 'package:proheal/core/repository/repostiory.dart';
+import 'package:proheal/core/style/color_contants.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,10 +15,15 @@ class ProHealApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'proheal',
-      home: LandingPage(),
+      home: const LandingPage(),
+      theme: ThemeData(
+        colorScheme: ColorScheme.light(
+          primary: black,
+        ),
+      ),
     );
   }
 }

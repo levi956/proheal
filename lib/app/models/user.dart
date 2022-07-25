@@ -13,13 +13,13 @@ class User {
   String? femaleConcieved;
   String? bloodGroup;
 
-  // probably to access the user prescription
+  // probably to access the user prescription (map)
   Prescription? userPrescription;
 
   // user device setting and all that sha
   Settings? userSettings;
 
-  // user feedback (string, dynamic)
+  // user feedback (map)
   FeedbackModel? userFeedback;
 
   // but what am i copying ?

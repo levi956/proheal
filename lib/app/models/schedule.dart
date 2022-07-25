@@ -1,16 +1,27 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class ScheduleModel {
   String? patientName;
-  String? surgeryType;
   String? additonalNotes;
   DateTime? scheduleDate;
-  bool? isAvailabe;
+  bool? scheduleStatus;
+  String? userId;
 
-  ScheduleModel(
-      {this.additonalNotes,
-      this.isAvailabe,
-      this.patientName,
-      this.scheduleDate,
-      this.surgeryType});
+  ScheduleModel({
+    this.additonalNotes,
+    this.scheduleStatus,
+    this.patientName,
+    this.scheduleDate,
+  });
 
-  // probably a method toJson factory method to parse and push to server (database)
+  Map<String, dynamic> toMap() {
+    return {
+      'userId': userId,
+      'patientName': patientName,
+      'additionalNotes': additonalNotes,
+      // so here it is parsed to a timestamp
+      'scheduledDate': Timestamp.fromDate(scheduleDate!),
+      'approved': scheduleStatus
+    };
+  }
 }

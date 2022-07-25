@@ -9,7 +9,7 @@ and be updating
 ---TRACKING RECOVERY SESSION---
 Patients access their recovery by anwering questions
 
-a patient is can answer questions from the dropdown in the create account
+a patient can answer questions from the dropdown in the create account
 
 
 -- if undergone surgery, provide a list of surgeries in the app scope

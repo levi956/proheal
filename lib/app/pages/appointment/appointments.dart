@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:proheal/app/pages/appointment/schedule.dart';
+import 'package:proheal/core/navigation/navigation.dart';
 import 'package:proheal/core/widgets/custom_button.dart';
 
 // if appointment, button might change
@@ -32,7 +34,7 @@ class Appointments extends StatelessWidget {
           CustomButton(
             text: 'Schedule Appointment',
             buttonWidth: double.maxFinite,
-            onPressed: () {},
+            onPressed: () => pushTo(context, const ScheduleAppointment()),
           )
         ],
       ),

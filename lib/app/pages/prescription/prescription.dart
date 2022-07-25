@@ -22,7 +22,7 @@ class Prescription extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             'Your Prescriptions',
             style: TextStyle(
               fontSize: 20,
@@ -30,7 +30,7 @@ class Prescription extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 30),
-          Text(
+          const Text(
             'No prescriptions have been given to you!',
             style: TextStyle(
               fontSize: 16,

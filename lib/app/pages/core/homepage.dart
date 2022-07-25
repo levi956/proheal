@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:proheal/app/models/health_news.dart';
+import 'package:proheal/app/pages/appointment/schedule.dart';
 import 'package:proheal/app/pages/feedback/feedback.dart';
 import 'package:proheal/core/navigation/navigation.dart';
 import 'package:proheal/core/repository/repostiory.dart';
 import 'package:proheal/core/widgets/access_card.dart';
+import 'package:proheal/core/widgets/distress_button.dart';
 
 import '../../../core/style/color_contants.dart';
 import '../../../core/widgets/health_news_card.dart';
@@ -39,22 +42,35 @@ class _HomePageState extends State<HomePage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Hey Levi,',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                  ),
+                Row(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        Text(
+                          'Hey Levi,',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        SizedBox(height: 5),
+                        Text(
+                          'What do you want to do today?',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Color(0xFFB3B4B6),
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Spacer(),
+                    //
+                    DistressButton(),
+                  ],
                 ),
-                const SizedBox(height: 5),
-                const Text(
-                  'What do you want to do today?',
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Color(0xFFB3B4B6),
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
+
                 const SizedBox(height: 30),
                 const Text(
                   'Quick Access',
@@ -66,13 +82,15 @@ class _HomePageState extends State<HomePage> {
                 const SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
+                  children: [
                     QuickAccessCard(
                       title: 'Book an\nAppointment',
                       description: 'Find a doctor',
-                      color: Color(0xFFF5EEEC),
+                      color: const Color(0xFFF5EEEC),
+                      onPressed: () =>
+                          pushTo(context, const ScheduleAppointment()),
                     ),
-                    QuickAccessCard(
+                    const QuickAccessCard(
                       title: 'Access your\nRecovery',
                       description: 'Answer questions\nin a tracking session',
                       color: Color(0xFFF6F8FC),
@@ -137,12 +155,12 @@ class _HomePageState extends State<HomePage> {
                       } else {
                         return Container(
                           width: double.maxFinite,
-                          color: Theme.of(context).scaffoldBackgroundColor,
+                          color: white,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               const Icon(
-                                Icons.warning,
+                                LineAwesomeIcons.plug,
                                 color: Colors.red,
                                 size: 25.0,
                               ),
@@ -151,6 +169,7 @@ class _HomePageState extends State<HomePage> {
                                 data.message!,
                                 style: TextStyle(
                                   color: black,
+                                  fontWeight: FontWeight.w300,
                                 ),
                               ),
                             ],
