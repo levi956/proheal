@@ -1,6 +1,5 @@
 import 'package:proheal/app/models/feedback.dart';
 import 'package:proheal/app/models/prescription.dart';
-import 'package:proheal/app/models/settings.dart';
 
 class User {
   String? fullName;
@@ -14,13 +13,23 @@ class User {
   String? bloodGroup;
 
   // probably to access the user prescription (map)
-  Prescription? userPrescription;
-
-  // user device setting and all that sha
-  Settings? userSettings;
+  Map<String, Prescription>? userPrescription;
 
   // user feedback (map)
-  FeedbackModel? userFeedback;
+  Map<String, FeedbackModel>? userFeedback;
+
+  User(
+      {this.fullName,
+      this.email,
+      this.bloodGroup,
+      this.femaleConcieved,
+      this.gender,
+      this.height,
+      this.phoneNumber,
+      this.userDefaultChoiceoOption,
+      this.userFeedback,
+      this.userPrescription,
+      this.weight});
 
   // but what am i copying ?
   User copyWith() {

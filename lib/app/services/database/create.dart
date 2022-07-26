@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:proheal/app/models/feedback.dart';
+import 'package:proheal/app/models/prescription.dart';
 import 'package:proheal/app/models/schedule.dart';
 import 'package:proheal/app/models/user.dart';
 
@@ -12,14 +13,11 @@ class DatabaseCreate {
       FirebaseFirestore.instance.collection('users');
 
   static final CollectionReference _refUsersAppointment =
-      FirebaseFirestore.instance.collection('appointment');
+      FirebaseFirestore.instance.collection('appointments');
 
-  // static Future<dynamic> checkEmail(String email) async {
-  //   final isUsed = _refUsers.where('email', isEqualTo: email).get();
-  //   print(isUsed);
-  // }
+  // check if the email has been used before later on
 
-  static Future<ServiceResponse> registerUser(User user) async {
+  Future<ServiceResponse> registerUser(User user) async {
     try {
       await _refUsers.doc('userId').set(user.toMap());
       return ServiceResponse(
@@ -35,13 +33,12 @@ class DatabaseCreate {
       }
       return ServiceResponse(
         status: false,
-        message: "Something went wrong",
+        message: _.toString(),
       );
     }
   }
 
-  static Future<ServiceResponse> sendFeeback(
-      FeedbackModel patientFeedback) async {
+  Future<ServiceResponse> sendFeeback(FeedbackModel patientFeedback) async {
     try {
       await _refUsers
           .doc('userId')
@@ -64,10 +61,37 @@ class DatabaseCreate {
     }
   }
 
+  Future<ServiceResponse> sendPrescription(
+      Prescription userPrescription) async {
+    try {
+      await _refUsers
+          .doc('userId')
+          .update({'prescription': userPrescription.toMap()});
+      return ServiceResponse(
+        status: true,
+        message: "Success",
+      );
+    } on FirebaseException catch (_) {
+      if (_ is SocketException) {
+        return ServiceResponse(
+          status: false,
+          message: "Check your internet connection",
+        );
+      }
+      return ServiceResponse(
+        status: false,
+        message: "Something went wrong",
+      );
+    }
+  }
+
   Future<ServiceResponse> scheduleAppointment(
       ScheduleModel userAppointment) async {
     try {
       await _refUsersAppointment.doc('userId').set(userAppointment.toMap());
+      await _refUsers
+          .doc('userId')
+          .update({'appointment': userAppointment.toMap()});
       return ServiceResponse(status: true, message: "success");
     } on FirebaseException catch (_) {
       if (_ is SocketException) {
@@ -76,7 +100,7 @@ class DatabaseCreate {
       }
       return ServiceResponse(
         status: false,
-        message: "something went wrong",
+        message: _.toString(),
       );
     }
   }

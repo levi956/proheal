@@ -102,8 +102,8 @@ class _ScheduleAppointmentState extends State<ScheduleAppointment> {
                     },
                     buttonTextColor: white,
                     buttonWidth: double.maxFinite,
-                    onPressed: () {},
-                    // onPressed: book,
+                    // onPressed: () {},
+                    onPressed: book,
                   )
                 ],
               )
@@ -153,9 +153,10 @@ class _ScheduleAppointmentState extends State<ScheduleAppointment> {
     );
     // stop loading indicator
     if (response.status) {
-      // success indicator
+      print(response.message);
+      setState(() {});
     } else {
-      // error indicator
+      print(response.message);
     }
   }
 }

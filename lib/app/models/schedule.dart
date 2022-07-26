@@ -7,6 +7,8 @@ class ScheduleModel {
   bool? scheduleStatus;
   String? userId;
 
+  String get remarks => additonalNotes ?? 'No remarks made';
+
   ScheduleModel({
     this.additonalNotes,
     this.scheduleStatus,
@@ -23,5 +25,12 @@ class ScheduleModel {
       'scheduledDate': Timestamp.fromDate(scheduleDate!),
       'approved': scheduleStatus
     };
+  }
+
+  factory ScheduleModel.fromJson(Map<String, dynamic> json) {
+    return ScheduleModel(
+        patientName: json['patientName'],
+        scheduleStatus: json['approved'],
+        scheduleDate: json['scheduledDate'].toDate());
   }
 }

@@ -1,9 +1,17 @@
 class Prescription {
   String? drugName;
-  int? timesInADay;
+  String? dosage;
   String? additionalNotes;
 
-  Prescription({this.additionalNotes, this.drugName, this.timesInADay});
+  Prescription({this.additionalNotes, this.drugName, this.dosage});
+
+  Map<String, dynamic> toMap() {
+    return {
+      'drugName': drugName,
+      'dosage': dosage,
+      'additionalNotes': additionalNotes
+    };
+  }
 }
 
 

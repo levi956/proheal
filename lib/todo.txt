@@ -19,3 +19,10 @@ a patient can answer questions from the dropdown in the create account
 
 
 -- then decision tree blah blah blah 
+
+
+
+
+---- FEATURES LEFT TO DO QUICK---
+- maybe implement the image feature
+- read from database for both prescription and appoitment

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:proheal/app/models/user.dart';
 import 'package:proheal/app/pages/core/dashboard.dart';
+import 'package:proheal/app/services/http_service/response_model.dart';
+import 'package:proheal/core/repository/repostiory.dart';
 import 'package:proheal/core/style/color_contants.dart';
 import 'package:proheal/core/widgets/textfield.dart';
 
@@ -7,11 +10,6 @@ import '../../../core/navigation/navigation.dart';
 import '../../../core/system/status_bar_color.dart';
 import '../../../core/widgets/custom_button.dart';
 import '../../../core/widgets/drop_down.dart';
-
-// name, date of birth, email, set password
-
-// kyc -- blood group, gender(if female, ask if concieved), date of birth
-// weight, height
 
 enum SignUpStage { one, two }
 
@@ -95,7 +93,8 @@ class _SignUpState extends State<SignUp> {
         signUpStage = SignUpStage.two;
       });
     } else {
-      // method that registers users goes here
+      pushTo(context, const Dashboard());
+      // registerUser();
     }
   }
 
@@ -376,15 +375,7 @@ class _SignUpState extends State<SignUp> {
                 buttonWidth: double.maxFinite,
                 // validator: buttonValidator,
                 buttonTextColor: white,
-                onPressed: () {
-                  if (signUpStage == SignUpStage.one) {
-                    setState(() {
-                      signUpStage = SignUpStage.two;
-                    });
-                  } else if (signUpStage == SignUpStage.two) {
-                    pushTo(context, const Dashboard());
-                  }
-                },
+                onPressed: mainButtonOnpressed,
               ),
               const SizedBox(height: 40),
               Center(
@@ -407,4 +398,27 @@ class _SignUpState extends State<SignUp> {
   }
 
   // probaly throw the method that registers the user here
+  Future<void> registerUser() async {
+    ServiceResponse response = await Repository.databaseCreate.registerUser(
+      User(
+        fullName: '$firstName $lastName',
+        email: email,
+        height: height,
+        bloodGroup: bloodGroup,
+        femaleConcieved: hasConcieved,
+        gender: gender,
+        phoneNumber: phoneNumber,
+        userDefaultChoiceoOption: userSelectedOption,
+      ),
+    );
+    print(response.message);
+    if (response.status) {
+      // show success prmompt and move to the next page
+      if (!mounted) return;
+      pushToAndClearStack(context, const Dashboard());
+    } else {
+      // show error prompt
+      print(response.message);
+    }
+  }
 }

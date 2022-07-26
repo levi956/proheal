@@ -6,6 +6,7 @@ import 'package:proheal/app/pages/core/health_advice.dart';
 import 'package:proheal/app/pages/core/homepage.dart';
 import 'package:proheal/app/pages/prescription/prescription.dart';
 import 'package:proheal/app/pages/core/user_health.dart';
+import 'package:proheal/app/services/database/read.dart';
 import 'package:proheal/core/style/color_contants.dart';
 import 'package:proheal/core/system/status_bar_color.dart';
 
@@ -37,6 +38,7 @@ class _DashboardState extends State<Dashboard> {
         onTap: (index) {
           setState(() {
             HapticFeedback.lightImpact();
+            DatabaseRead.getUserAppointments();
             tabIndex = index;
           });
         },
