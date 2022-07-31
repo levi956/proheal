@@ -15,6 +15,11 @@ class DatabaseCreate {
   static final CollectionReference _refUsersAppointment =
       FirebaseFirestore.instance.collection('appointments');
 
+  static final CollectionReference _wRef = FirebaseFirestore.instance
+      .collection("appointment")
+      .doc('userID')
+      .collection("userAppointment");
+
   // check if the email has been used before later on
 
   Future<ServiceResponse> registerUser(User user) async {
@@ -88,7 +93,7 @@ class DatabaseCreate {
   Future<ServiceResponse> scheduleAppointment(
       ScheduleModel userAppointment) async {
     try {
-      await _refUsersAppointment.doc('userId').set(userAppointment.toMap());
+      await _wRef.add(userAppointment.toMap());
       await _refUsers
           .doc('userId')
           .update({'appointment': userAppointment.toMap()});

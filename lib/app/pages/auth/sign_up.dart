@@ -10,6 +10,7 @@ import '../../../core/navigation/navigation.dart';
 import '../../../core/system/status_bar_color.dart';
 import '../../../core/widgets/custom_button.dart';
 import '../../../core/widgets/drop_down.dart';
+import '../../../core/widgets/snackbar.dart';
 
 enum SignUpStage { one, two }
 
@@ -411,14 +412,13 @@ class _SignUpState extends State<SignUp> {
         userDefaultChoiceoOption: userSelectedOption,
       ),
     );
-    print(response.message);
     if (response.status) {
-      // show success prmompt and move to the next page
       if (!mounted) return;
+      showSnackBar(response.message!, Colors.green, context);
       pushToAndClearStack(context, const Dashboard());
     } else {
-      // show error prompt
-      print(response.message);
+      if (!mounted) return;
+      showSnackBar(response.message!, Colors.red, context);
     }
   }
 }

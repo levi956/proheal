@@ -53,7 +53,7 @@ class AppointmentCard extends StatelessWidget {
             ),
             const SizedBox(height: 5),
             Text(
-              DateFormat('EEEEE MMMM, yyyy').format(date),
+              DateFormat('EEEEE dd MMMM, yyyy').format(date),
               style: const TextStyle(
                 fontWeight: FontWeight.w400,
                 fontSize: 14,

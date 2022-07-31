@@ -13,6 +13,11 @@ class DatabaseRead {
   static final CollectionReference _refUsersAppointment =
       FirebaseFirestore.instance.collection('appointments');
 
+  static final CollectionReference _wRef = FirebaseFirestore.instance
+      .collection("appointment")
+      .doc('userID')
+      .collection("userAppointment");
+
   static Future<ServiceResponse> getUserAppointments() async {
     try {
       DocumentSnapshot response =
@@ -33,5 +38,13 @@ class DatabaseRead {
       status: false,
       message: "Something went wrong",
     );
+  }
+
+  // get user stream collection collection
+  static Stream<List<ScheduleModel>> getData() {
+    return _wRef.snapshots().map((snapshot) => snapshot.docs
+        .map(
+            (doc) => ScheduleModel.fromJson(doc.data() as Map<String, dynamic>))
+        .toList());
   }
 }

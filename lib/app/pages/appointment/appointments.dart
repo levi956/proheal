@@ -16,73 +16,61 @@ class Appointments extends StatefulWidget {
 }
 
 class _AppointmentsState extends State<Appointments> {
-  late Future<ServiceResponse> appointmentData;
+  late Stream<List<ScheduleModel>> appointmentStream;
 
   @override
   void initState() {
-    appointmentData = DatabaseRead.getUserAppointments();
+    appointmentStream = DatabaseRead.getData();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size.height;
     return Padding(
       padding: const EdgeInsets.only(left: 20, right: 20, top: 60, bottom: 20),
-      child: GestureDetector(
-        onTap: () => setState(() {
-          appointmentData = DatabaseRead.getUserAppointments();
-        }),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Your Appointments',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w500,
-              ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Your Appointments',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
             ),
-            const SizedBox(height: 30),
-            FutureBuilder<ServiceResponse>(
-              future: appointmentData,
-              builder: (_, snapshot) {
-                if (snapshot.hasData) {
-                  ServiceResponse response = snapshot.data!;
+          ),
+          StreamBuilder<List<ScheduleModel>>(
+            stream: appointmentStream,
+            builder: (_, snapshot) {
+              if (snapshot.hasData) {
+                List<ScheduleModel> appointments = snapshot.data!;
 
-                  if (response.status) {
-                    ScheduleModel appointment = response.data;
-
-                    // return the widget that builds the widget
-
-                    if (response.data != null) {
+                return SizedBox(
+                  height: size * 0.6,
+                  child: ListView.separated(
+                    itemCount: appointments.length,
+                    itemBuilder: (_, index) {
                       return AppointmentCard(
-                        additionalNotes: appointment.remarks,
-                        date: appointment.scheduleDate!,
-                        status: appointment.scheduleStatus!,
+                        date: appointments[index].scheduleDate!,
+                        status: appointments[index].scheduleStatus!,
+                        additionalNotes: appointments[index].remarks,
                       );
-                    }
-                  } else {
-                    return const Text(
-                      'You have no appointments set!',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    );
-                  }
-                }
-
-                return const CircularProgressIndicator.adaptive();
-              },
-            ),
-            const SizedBox(height: 70),
-            CustomButton(
-              text: 'Schedule Appointment',
-              buttonWidth: double.maxFinite,
-              onPressed: () => pushTo(context, const ScheduleAppointment()),
-            )
-          ],
-        ),
+                    },
+                    separatorBuilder: ((context, index) =>
+                        const SizedBox(height: 10)),
+                  ),
+                );
+              }
+              return const CircularProgressIndicator.adaptive();
+            },
+          ),
+          const SizedBox(height: 70),
+          CustomButton(
+            text: 'Schedule Appointment',
+            buttonWidth: double.maxFinite,
+            onPressed: () => pushTo(context, const ScheduleAppointment()),
+          )
+        ],
       ),
     );
   }

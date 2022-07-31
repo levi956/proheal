@@ -29,6 +29,13 @@
             {
               "client_id": "1049355472665-a9u3qedhe7rtqag4khttlltr12p33i3f.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1049355472665-uo8kn3gceld8t85k0vkleule8r67ubmu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.proheal"
+              }
             }
           ]
         }

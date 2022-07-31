@@ -7,6 +7,7 @@ import 'package:proheal/core/widgets/custom_button.dart';
 
 import '../../../core/navigation/navigation.dart';
 import '../../../core/style/color_contants.dart';
+import '../../../core/widgets/snackbar.dart';
 import '../../services/http_service/response_model.dart';
 
 class ScheduleAppointment extends StatefulWidget {
@@ -153,10 +154,12 @@ class _ScheduleAppointmentState extends State<ScheduleAppointment> {
     );
     // stop loading indicator
     if (response.status) {
-      print(response.message);
-      setState(() {});
+      if (!mounted) return;
+      showSnackBar(response.message!, Colors.green, context);
+      pop(context);
     } else {
-      print(response.message);
+      if (!mounted) return;
+      showSnackBar(response.message!, Colors.red, context);
     }
   }
 }
