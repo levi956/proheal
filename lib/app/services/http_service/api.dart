@@ -10,7 +10,7 @@ class HttpClient {
   Future<ServiceResponse<List<HealthAdviceModel>>> getHealthAdvice(
       String topic) async {
     try {
-      var response = await Dio().get(ProHeal.topicsUrl + topic);
+      final response = await Dio().get(ProHeal.topicsUrl + topic);
 
       // parse
       var parseOne = response.data['Result']['Resources'];
@@ -41,8 +41,6 @@ class HttpClient {
       );
     }
   }
-
-  // throw the health nwws here
 
   Future<ServiceResponse<List<HealthNews>>> getHealthNews() async {
     try {

@@ -6,7 +6,7 @@ import 'package:proheal/core/system/set_potrait.dart';
 import '../../app/services/database/create.dart';
 
 // goal of the repository is to make on instance accessible
-// everwhere in the application
+// everywhere in the application
 
 class Repository {
   static HttpClient httpClient = HttpClient();

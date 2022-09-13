@@ -67,7 +67,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     const Spacer(),
                     //
-                    DistressButton(),
+                    const DistressButton(),
                   ],
                 ),
 

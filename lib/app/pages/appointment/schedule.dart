@@ -65,7 +65,7 @@ class _ScheduleAppointmentState extends State<ScheduleAppointment> {
                       setState(() {
                         userScheduled = DateTime.parse(val);
                       });
-                      print(userScheduled);
+                      debugPrint(userScheduled.toString());
                     },
                     validator: (val) {
                       print(val);

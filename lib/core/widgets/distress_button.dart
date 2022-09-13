@@ -49,9 +49,9 @@ class _DistressButtonState extends State<DistressButton> {
     try {
       final url = Uri.parse('tel:911');
       await launchUrl(url);
-      // since emulator can't call, then real device
+      // since emulator can't call, test on real device
     } catch (_) {
-      print(_.toString());
+      rethrow;
     }
   }
 }

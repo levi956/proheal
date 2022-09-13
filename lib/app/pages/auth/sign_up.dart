@@ -398,7 +398,6 @@ class _SignUpState extends State<SignUp> {
     );
   }
 
-  // probaly throw the method that registers the user here
   Future<void> registerUser() async {
     ServiceResponse response = await Repository.databaseCreate.registerUser(
       User(

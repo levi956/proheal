@@ -6,8 +6,6 @@ import 'package:proheal/core/navigation/navigation.dart';
 import 'package:proheal/core/widgets/appointment_card.dart';
 import 'package:proheal/core/widgets/custom_button.dart';
 
-import '../../services/http_service/response_model.dart';
-
 class Appointments extends StatefulWidget {
   const Appointments({Key? key}) : super(key: key);
 
